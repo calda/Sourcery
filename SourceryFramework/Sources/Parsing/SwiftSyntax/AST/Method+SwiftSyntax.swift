@@ -29,7 +29,7 @@ extension SourceryMethod {
             parameters: signature.input.parameterList,
             output: nil,
             asyncKeyword: nil,
-            throwsOrRethrowsKeyword: signature.throwsOrRethrowsKeyword?.description.trimmed,
+            throwsOrRethrowsKeyword: signature.effectSpecifiers?.throwsSpecifier?.description.trimmed,
             annotationsParser: annotationsParser
           ),
           modifiers: node.modifiers,
@@ -99,7 +99,7 @@ extension SourceryMethod {
                 return nil
             }
             // TODO: TBR
-            returnTypeName = TypeName(name: returnTypeName.name + " \(genericWhereClause.withoutTrivia().description.trimmed)",
+            returnTypeName = TypeName(name: returnTypeName.name + " \(genericWhereClause.description.trimmed)",
                                       unwrappedTypeName: returnTypeName.unwrappedTypeName,
                                       attributes: returnTypeName.attributes,
                                       isOptional: returnTypeName.isOptional,
